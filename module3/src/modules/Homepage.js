@@ -1,23 +1,28 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
 import { LoginContext } from '../contexts/LoginContext';
 
 function Homepage() {
 
-    const loggedInUser = {
-        ccNumber: 0,
-        ccName: "Dummy Card",
-        userName: "Guest User",
-        userId: "guest",
-        availableRedeemPoints: 0,
-        totalRewardsGained: 0
-    }
-    const isLoggedIn = false;
+    // const loggedInUser = {
+    //     ccNumber: 0,
+    //     ccName: "Dummy Card",
+    //     userName: "Guest User",
+    //     userId: "guest",
+    //     availableRedeemPoints: 0,
+    //     totalRewardsGained: 0
+    // }
+    // const isLoggedIn = false;
 
     /**
      * Replace the above login details with details from LoginContext
      * 
      */
+     const {
+        loggedInUser,
+        isLoggedIn,
+        setLoginUserDetails,
+        logoutUser } = useContext(LoginContext);
 
     return (
         <div className="homepage container">

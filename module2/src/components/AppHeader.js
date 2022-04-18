@@ -3,9 +3,11 @@ import { Link, useHistory } from 'react-router-dom';
 import '../styles/AppHeader.css'
 import AppRoute from '../AppRoutes';
 
+
 function AppHeader() {
 
-    const cartCount = 0;
+    //const { loggedInUser, isLoggedIn, logoutUser } = useContext(LoginContext);
+    const cartCount = 0;        
     const history = useHistory();
 
     const logoutUser = () => {
@@ -48,7 +50,7 @@ function AppHeader() {
                         {/* Provide cart routing link */}
                         <Link type="button" className="btn btn-success" to="/cart">
                             <i className="fas fa-shopping-cart" />&nbsp; My Cart &nbsp;
-                            <span className="badge badge-light">
+                            <span className="badge badge-light">  
                                 {cartCount}
                             </span>
                             <span className="sr-only">cart items</span>

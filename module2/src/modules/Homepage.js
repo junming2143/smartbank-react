@@ -1,15 +1,24 @@
 import React from 'react';
+import {LoginContext} from '../contexts/LoginContext';
+import {useContext} from "react"
 
 function Homepage() {
 
-    const loggedInUser = {
-        ccNumber: 0,
-        ccName: "Dummy Card",
-        userName: "Guest User",
-        userId: "guest",
-        availableRedeemPoints: 0,
-        totalRewardsGained: 0
-    }
+    // const loggedInUser = {
+    //     ccNumber: 0,
+    //     ccName: "Dummy Card",
+    //     userName: "Guest User",
+    //     userId: "guest",
+    //     availableRedeemPoints: 0,
+    //     totalRewardsGained: 0
+    // }
+
+    //destructuring the useContext
+    const {
+        loggedInUser,
+        isLoggedIn,
+        setLoginUserDetails,
+        logoutUser } = useContext(LoginContext);
 
 
     return (
@@ -30,11 +39,11 @@ function Homepage() {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>ccNumber</td>
-                                <td>ccName</td>
-                                <td>userName</td>
-                                <td>availableRedeemPoints</td>
-                                <td>totalRewardsGained</td>
+                                <td>{loggedInUser.ccNumber}</td>
+                                <td>{loggedInUser.ccName}</td>
+                                <td>{loggedInUser.userName}</td>
+                                <td>{loggedInUser.availableRedeemPoints}</td>
+                                <td>{loggedInUser.totalRewardsGained}</td>
                             </tr>
                         </tbody>
                     </table>

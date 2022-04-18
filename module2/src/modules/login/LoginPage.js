@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { API_URL } from '../../Constants';
+import {LoginContext} from '../../contexts/LoginContext';
+import {useContext} from "react"
 
 
 function LoginPage() {
@@ -9,18 +11,31 @@ function LoginPage() {
     const [userId, setUserId] = useState('')
     const [password, setPassword] = useState('')
 
+    const {
+        loggedInUser,
+        isLoggedIn,
+        setLoginUserDetails,
+        logoutUser } = useContext(LoginContext);
+
+    useEffect(() => {
+        console.log(setLoginUserDetails);
+        console.log(isLoggedIn);
+    }, [])
+        
+
     const changeUserId = (e) => {
 
         /**
          * Set user id from input
          */
-
+         setUserId(e.target.value)
     }
 
     const changePassword = (e) => {
         /**
          * Set password from input
          */
+         setPassword(e.target.value)
     }
 
     const verifyLogin = async (e) => {
@@ -40,8 +55,10 @@ function LoginPage() {
                 setUserId('');
                 setPassword('');
                 
-               
-
+                // updating the login context
+                setLoginUserDetails(response.data.body)
+                //navigate to homepage
+                history.push("/")
             })
             .catch(error => {
                 if (error.response) {
@@ -69,7 +86,7 @@ function LoginPage() {
                 <div className="row">
                     <div className="col-md-6">
                         {/* call the verify login function to get the response from API server  */}
-                        <form>
+                        <form onSubmit={verifyLogin}>
 
                             <div className="form-group">
                                 <label>

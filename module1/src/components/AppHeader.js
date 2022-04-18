@@ -4,7 +4,8 @@ import '../styles/AppHeader.css'
 import AppRoute from '../AppRoutes';
 
 function AppHeader() {
-
+    //useHistory: This is one of the most popular hooks provided by React Router. It lets you access the history instance used by React Router. 
+    //Using the history instance you can redirect users to another page. The history instance created by React Router uses a Stack( called “History Stack” ), that stores all the entries the user has visited.
     let history = useHistory();
     const cartCount = 0;
 
@@ -12,6 +13,7 @@ function AppHeader() {
         /**
          * Write logic to route to login page on clicking logout button.
          */
+        //push: Redirect the user to the `/login` pag. The below code adds the `/login` page to the history stack.
         history.push("/login")
     }
 
@@ -27,14 +29,14 @@ function AppHeader() {
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item navbar-link active">
                             {/* Provide Homepage routing link */}
-                            <Link className="nav-link" to="#">
+                            <Link className="nav-link" to="/">
                                 <i className="fas fa-home"></i>
                                 <span className="sr-only">(current)</span>
                             </Link>
                         </li>
                         <li className="nav-item navbar-link">
                             {/* Provide Rewards routing link */}
-                            <Link className="btn btn-success" to="#">
+                            <Link className="btn btn-success" to="/rewards">
                                 Rewards Catalogue
                             </Link>
 
@@ -46,7 +48,7 @@ function AppHeader() {
 
                     <div className="header-right">
                         {/* Provide cart routing link */}
-                        <Link type="button" className="btn btn-success" to="#">
+                        <Link type="button" className="btn btn-success" to="/cart">
                             <i className="fas fa-shopping-cart" />&nbsp; My Cart &nbsp;
                             <span className="badge badge-light">
                                 {cartCount}

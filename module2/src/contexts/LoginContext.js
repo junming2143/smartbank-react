@@ -15,17 +15,14 @@ function LoginContextProvider(props) {
         totalRewardsGained: 0
     }
     const [loggedInUser, setLoggedInUser] = useState(defaultUser)
-    const [ isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    const setLoginUserDetails = (user) =>  {
+    const setLoginUserDetails = (user) => {
 
         console.log("setting log in user details");
         setIsLoggedIn(true)
-        
-        setLoggedInUser( user);
-        
-        
-        
+
+        setLoggedInUser(user);
     }
 
     const logoutUser = () => {
@@ -33,7 +30,7 @@ function LoginContextProvider(props) {
         setIsLoggedIn(false);
         setLoggedInUser(defaultUser);
 
-    } 
+    }
 
     const refreshLoginDetails = async () => {
 
@@ -42,38 +39,39 @@ function LoginContextProvider(props) {
             password: loggedInUser.password
         }
         await axios.post(API_URL + 'ccuser/login', loginDetail)
-        .then(response => {
-            console.log(response);
-            
-            // updating the login context
-            setLoginUserDetails(response.data.body)
-           
+            .then(response => {
+                console.log(response);
 
-        })
-        .catch(error => {
-            if (error.response) {
-                console.log(error.response);
-            } else if (error.request) {
-                console.log(error.request);
-            } else {
-                console.log('error', error.message);
+                // updating the login context
+                setLoginUserDetails(response.data.body)
 
-            }
-        
 
-        })
+            })
+            .catch(error => {
+                if (error.response) {
+                    console.log(error.response);
+                } else if (error.request) {
+                    console.log(error.request);
+                } else {
+                    console.log('error', error.message);
+
+                }
+
+
+            })
 
     }
 
     return (
         <div>
             <LoginContext.Provider
-                value={{ loggedInUser, 
-                         isLoggedIn, 
-                         setLoginUserDetails, 
-                         logoutUser,
-                         refreshLoginDetails
-                        }}
+                value={{
+                    loggedInUser,
+                    isLoggedIn,
+                    setLoginUserDetails,
+                    logoutUser,
+                    refreshLoginDetails
+                }}
             >
                 {props.children}
             </LoginContext.Provider>

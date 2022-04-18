@@ -56,7 +56,7 @@ function CartPage() {
                         <div>
                             <h4>My Cart</h4>
                             <hr></hr>
-                            <h5 style={{ color: "red" }}>Please Sign In to add items in the cart.</h5>
+                            <h5 style={{ color: "red" }}>Please n to add items in the cart.</h5>
                             <Link type="button" className="btn btn-primary" to="/login">
                                 <i className="fas fa-sign-in-alt"></i>&nbsp;Sign in
                         </Link>

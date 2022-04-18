@@ -15,7 +15,6 @@ const AppRoute = () => {
             <Route path="/cart" component={CartPage} />
             <Route path="/rewards" component={RewardCataloguePage} />
             <Route path="/order-confirm" component={ConfirmOrder} />
-            <Route path="/logout" component={LoginPage} />
         </div>
      );
 }
