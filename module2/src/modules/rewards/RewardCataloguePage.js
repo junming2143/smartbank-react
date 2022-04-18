@@ -46,9 +46,6 @@ function RewardCataloguePage() {
                     catalogueListLoaded ?
                         (
                             <div className="row" >
-
-                                <h6>Render the <i>CatalogueItem</i> Component</h6>
-
                                 {
                                     catalogueList.map(c => (
 
