@@ -18,7 +18,7 @@ function CartPage() {
                             cartItems.length > 0 ? (
                                 <div>
                                     <span style={{ float: "right", fontSize: "16px", fontWeight: "bold" }}>
-                                        Available Points :- {loggedInUser.availableRedeemPoints}
+                                        Available Points : {loggedInUser.availableRedeemPoints}
                                     </span>
                                     <h4>My Cart ({cartItems.length})</h4>
 

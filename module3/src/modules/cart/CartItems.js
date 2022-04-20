@@ -26,7 +26,11 @@ function CartItems() {
          * quantity will be always 1.
          */
          let orderData = {
-            quantity: 1
+            itemsRedeemed:cartItems,
+            quantity: 1,
+            ccNumber: loggedInUser.ccNumber,
+            totalPointsRedeemed:cartSummary.totalRedeemPoints,
+            totalAmountGained:cartSummary.totalAmount
         }
         axios.post(API_URL+"history/",orderData )
             .then ( response => {
@@ -37,7 +41,14 @@ function CartItems() {
                  * refresh the login details
                  * call the appropriate method from the cart the context to update the cart details.
                  */
-                
+                  console.log(response)
+                  history.push('/order-confirm')
+                  refreshLoginDetails()
+                  afterPurchase()
+                  //navigate to homepage after 5s
+                  setTimeout(function() {
+                    history.push('/');
+                  }, 5000);
 
             })
             .catch(error => {
@@ -47,7 +58,6 @@ function CartItems() {
                 } else if (error.request) {
                     console.log(error.request);
                     
-
                 }
             })
     }
@@ -91,10 +101,10 @@ function CartItems() {
                     <h5>Final Redeemption Summary</h5>
                     <hr></hr>
                     <div>
-                        <h6>Total Redeemption Points - {cartSummary.totalRedeemPoints}</h6>
+                        <h6>Total Redeemption Points : {cartSummary.totalRedeemPoints}</h6>
                     </div>
                     <div>
-                        <h6>Total Amount - {cartSummary.totalAmount}</h6>
+                        <h6>Total Amount : {cartSummary.totalAmount}</h6>
                     </div>
                     <br /> <br /><hr></hr>
 
