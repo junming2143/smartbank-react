@@ -11,6 +11,9 @@ function ConfirmOrder() {
         if (sessionStorage.getItem("OrderConfirm") === null){
             history.push("/")
         }
+        else{
+            sessionStorage.removeItem("OrderConfirm")
+        }
     }, [])
 
     return (
