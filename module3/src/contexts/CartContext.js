@@ -1,8 +1,10 @@
 import React, { createContext, useState } from 'react';
 import axios from 'axios';
+import usePersistState from '../usePersistState';
 
 
 export const CartContext = createContext();
+
 const defaultCartSummary = {
     totalAmount: 0,
     items: [],
@@ -11,9 +13,13 @@ const defaultCartSummary = {
 }
 function CartContextProvider(props) {
 
-    const [cartCount, setCartCount] = useState(0)
-    const [cartItems, setCartItems] = useState([])
-    const [cartSummary, setCartSummary] = useState(defaultCartSummary);
+    const [cartCount, setCartCount] = usePersistState('cartCount', 0);
+    const [ cartItems, setCartItems ] = usePersistState('cartItems', []);
+    const [cartSummary, setCartSummary] = usePersistState('cartSummart', defaultCartSummary);
+
+    //const [cartCount, setCartCount] = useState(0)
+    //const [cartItems, setCartItems] = useState([])
+    //const [cartSummary, setCartSummary] = useState(defaultCartSummary);
  
     const addToCart = (catalogue) => {
         let { redeemptionAmount, redeemptionPoint } = catalogue;

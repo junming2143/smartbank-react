@@ -42,6 +42,7 @@ function CartItems() {
                  * call the appropriate method from the cart the context to update the cart details.
                  */
                   console.log(response)
+                  sessionStorage.setItem("OrderConfirm", true)
                   history.push('/order-confirm')
                   refreshLoginDetails()
                   afterPurchase()

@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '../Constants';
+import usePersistState from '../usePersistState';
 // creating login context to store the values.
 export const LoginContext = createContext();
 
@@ -14,8 +15,14 @@ function LoginContextProvider(props) {
         availableRedeemPoints: 0,
         totalRewardsGained: 0
     }
-    const [loggedInUser, setLoggedInUser] = useState(defaultUser)
-    const [ isLoggedIn, setIsLoggedIn] = useState(false);
+
+    // When initiating the new hook you need to pass a key for the store.
+  // you can also optionally pass a default value which will be overwritten if the store already exists.
+    const [loggedInUser, setLoggedInUser] = usePersistState('loggedInUser', defaultUser);
+    const [ isLoggedIn, setIsLoggedIn] = usePersistState(false);
+
+    //const [loggedInUser, setLoggedInUser] = useState(defaultUser)
+    //const [ isLoggedIn, setIsLoggedIn] = useState(false);
 
     const setLoginUserDetails = (user) =>  {
 
