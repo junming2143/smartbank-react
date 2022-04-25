@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/AppHeader.css'
 import AppRoute from '../AppRoutes';
 
@@ -8,13 +8,13 @@ function AppHeader() {
 
     //const { loggedInUser, isLoggedIn, logoutUser } = useContext(LoginContext);
     const cartCount = 0;        
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const logoutUser = () => {
         /**
          * Write logic to route to login page on clicking logout button.
          */
-        history.push("/login")
+        navigate("/login")
     }
 
     return (

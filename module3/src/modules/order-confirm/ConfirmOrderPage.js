@@ -1,15 +1,12 @@
-import React, { useContext, useEffect } from 'react';
-import { LoginContext } from '../../contexts/LoginContext';
-import { Link } from 'react-router-dom';
-import { useState } from 'react/cjs/react.production.min';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function ConfirmOrder() {
 
-    let history = useHistory();
+    let navigate= useNavigate();
     useEffect(() => {
         if (sessionStorage.getItem("OrderConfirm") === null){
-            history.push("/")
+            navigate("/")
         }
         else{
             sessionStorage.removeItem("OrderConfirm")

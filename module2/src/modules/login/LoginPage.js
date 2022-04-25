@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import { API_URL } from '../../Constants';
 import {LoginContext} from '../../contexts/LoginContext';
-import {useContext} from "react"
+
 
 
 function LoginPage() {
-    let history = useHistory();
+    let navigate = useNavigate();
     const [userId, setUserId] = useState('')
     const [password, setPassword] = useState('')
 
@@ -58,7 +58,7 @@ function LoginPage() {
                 // updating the login context
                 setLoginUserDetails(response.data.body)
                 //navigate to homepage
-                history.push("/")
+                navigate("/")
             })
             .catch(error => {
                 if (error.response) {
