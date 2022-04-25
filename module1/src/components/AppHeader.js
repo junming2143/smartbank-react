@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/AppHeader.css'
 import AppRoute from '../AppRoutes';
 
 function AppHeader() {
     //useHistory: This is one of the most popular hooks provided by React Router. It lets you access the history instance used by React Router. 
     //Using the history instance you can redirect users to another page. The history instance created by React Router uses a Stack( called “History Stack” ), that stores all the entries the user has visited.
-    let history = useHistory();
+    let navigate = useNavigate();
     const cartCount = 0;
 
     const logoutUser = () => {
@@ -14,7 +14,7 @@ function AppHeader() {
          * Write logic to route to login page on clicking logout button.
          */
         //push: Redirect the user to the `/login` pag. The below code adds the `/login` page to the history stack.
-        history.push("/login")
+        navigate("/login")
     }
 
     return (

@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../../Constants';
 import { LoginContext } from '../../contexts/LoginContext';
 
 function LoginPage(props) {
-    let history = useHistory();
+    let navigate = useNavigate();
 
     const {
         loggedInUser,
@@ -43,7 +43,7 @@ function LoginPage(props) {
             password: password
         }
 
-        await axios.post(API_URL + 'ccuser/login', loginDetail)
+        await axios.post(API_URL + 'ccuser/login', null, {headers: { authorization: 'Basic ' + window.btoa(userId + ":" + password) }, params:{userId:userId},})
             .then(response => {
                 console.log(response);
                 setUserId('');
@@ -51,7 +51,7 @@ function LoginPage(props) {
                 // updating the login context
                 setLoginUserDetails(response.data.body)
                 // navigating to the homepage after login
-                history.push('/');
+                navigate('/');
 
             })
             .catch(error => {

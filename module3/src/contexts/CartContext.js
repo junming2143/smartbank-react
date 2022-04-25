@@ -15,7 +15,7 @@ function CartContextProvider(props) {
 
     const [cartCount, setCartCount] = usePersistState('cartCount', 0);
     const [ cartItems, setCartItems ] = usePersistState('cartItems', []);
-    const [cartSummary, setCartSummary] = usePersistState('cartSummart', defaultCartSummary);
+    const [cartSummary, setCartSummary] = usePersistState('cartSummary', defaultCartSummary);
 
     //const [cartCount, setCartCount] = useState(0)
     //const [cartItems, setCartItems] = useState([])

@@ -3,11 +3,11 @@ import { CartContext } from '../../contexts/CartContext';
 import { LoginContext } from '../../contexts/LoginContext';
 import axios from 'axios';
 import { API_URL } from '../../Constants';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 function CartItems() {
 
-    let history = useHistory();
+    let navigate = useNavigate();
     const { cartItems, removeItemFromCart, cartSummary, afterPurchase } = useContext(CartContext)
     const [items, setItems] = useState(cartItems);
     const { loggedInUser, refreshLoginDetails } = useContext(LoginContext);
@@ -43,12 +43,12 @@ function CartItems() {
                  */
                   console.log(response)
                   sessionStorage.setItem("OrderConfirm", true)
-                  history.push('/order-confirm')
+                  navigate('/order-confirm')
                   refreshLoginDetails()
                   afterPurchase()
                   //navigate to homepage after 5s
                   setTimeout(function() {
-                    history.push('/');
+                    navigate('/');
                   }, 5000);
 
             })
