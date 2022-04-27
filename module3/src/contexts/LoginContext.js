@@ -13,7 +13,8 @@ function LoginContextProvider(props) {
         userName: "",
         userId: "",
         availableRedeemPoints: 0,
-        totalRewardsGained: 0
+        totalRewardsGained: 0,
+        role: ""
     }
 
     // When initiating the new hook you need to pass a key for the store.
