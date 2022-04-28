@@ -36,8 +36,7 @@ function LoginPage(props) {
     const verifyLogin = async (e) => {
 
         e.preventDefault();
-        console.log(userId, " /", password);
-
+        
         let loginDetail = {
             userId: userId,
             password: password
