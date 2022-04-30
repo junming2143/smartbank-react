@@ -37,12 +37,36 @@ function LoginPage(props) {
 
         e.preventDefault();
         
-        let loginDetail = {
-            userId: userId,
-            password: password
-        }
+        const headers = {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'username': userId,
+            'password': password
+          }
 
-        await axios.post(API_URL + 'ccuser/login', null, {headers: { authorization: 'Basic ' + window.btoa(userId + ":" + password) }, params:{userId:userId},})
+        await axios.post(API_URL + 'login', null, {headers:headers})
+        .then(response => {
+            console.log(response);
+            let accesstoken = response.data.access_token
+            let refreshtoken = response.data.refreshtoken
+            localStorage.setItem("accessToken", accesstoken)
+            console.log("accessToken: " + accesstoken)
+            // localStorage.setItem("refreshToken", refreshtoken)
+            // console.log("accessToken set" + refreshtoken)
+            
+        }).catch((error) => {
+            if (error.response) {
+                console.log(error.response);
+            } else if (error.request) {
+                console.log(error.request);
+            } else {
+                console.log('error', error.message);
+            }
+          })
+          
+        await axios.post(API_URL + 'ccuser/login', null, {headers: {
+                Authorization: `Bearer ` + localStorage.getItem("accessToken") }
+                , params:{userId:userId},})
             .then(response => {
                 console.log(response);
                 setUserId('');

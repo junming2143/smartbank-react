@@ -44,8 +44,9 @@ function LoginContextProvider(props) {
     const refreshLoginDetails = async () => {
 
         let userId =  loggedInUser.userId
-        let password = loggedInUser.password
-        await axios.post(API_URL + 'ccuser/login', null, {headers: { authorization: 'Basic ' + window.btoa(userId + ":" + password) }, params:{userId:userId},})
+        await axios.post(API_URL + 'ccuser/login', null, {headers: {
+            Authorization: `Bearer ` + localStorage.getItem("accessToken") }
+            , params:{userId:userId},})
         .then(response => {
             console.log(response);
             
