@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { CartContext } from '../../contexts/CartContext';
 import { LoginContext } from '../../contexts/LoginContext';
 import axios from 'axios';
-import { API_URL } from '../../Constants';
+import { API_URL, EMAIL_URL } from '../../Constants';
 import {useNavigate} from 'react-router-dom';
 
 function CartItems() {
@@ -32,11 +32,18 @@ function CartItems() {
             totalPointsRedeemed:cartSummary.totalRedeemPoints,
             totalAmountGained:cartSummary.totalAmount
         }
+        let emailData = {
+            sendTo:"tanjunming23@gmail.com",
+            subject:"Order Confirmation",
+            body: "Congratulations. You have successfully redeemed your points. Attached is your voucher."
+        }
         axios.post(API_URL+"history/",orderData, {headers: 
             {Authorization: `Bearer ` + localStorage.getItem("accessToken")}})
             .then ( response => {
                   console.log(response)
                   sessionStorage.setItem("OrderConfirm", true)
+                  axios.post(EMAIL_URL + "sendemail", )
+
                   navigate('/order-confirm')
                   refreshLoginDetails()
                   afterPurchase()
