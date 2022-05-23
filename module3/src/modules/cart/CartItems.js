@@ -33,16 +33,16 @@ function CartItems() {
             totalAmountGained:cartSummary.totalAmount
         }
         let emailData = {
-            sendTo:"tanjunming23@gmail.com",
-            subject:"Order Confirmation",
-            body: "Congratulations. You have successfully redeemed your points. Attached is your voucher."
+            // sendTo:"tanjunming23@gmail.com",
+            // subject:"Order Confirmation",
+            // body: "Congratulations. You have successfully redeemed your points. Attached is your voucher."
         }
         axios.post(API_URL+"history/",orderData, {headers: 
             {Authorization: `Bearer ` + localStorage.getItem("accessToken")}})
             .then ( response => {
                   console.log(response)
                   sessionStorage.setItem("OrderConfirm", true)
-                  axios.post(EMAIL_URL + "sendemail", )
+                  axios.post(EMAIL_URL)
 
                   navigate('/order-confirm')
                   refreshLoginDetails()
