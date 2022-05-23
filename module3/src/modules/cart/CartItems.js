@@ -42,7 +42,7 @@ function CartItems() {
             .then ( response => {
                   console.log(response)
                   sessionStorage.setItem("OrderConfirm", true)
-                  axios.post(EMAIL_URL + "sendemail", )
+                  axios.post(EMAIL_URL,  emailData)
 
                   navigate('/order-confirm')
                   refreshLoginDetails()
